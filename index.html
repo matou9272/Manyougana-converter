@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="./image/favicon.ico">
+  <title>万葉仮名変換</title>
+</head>
+<body>
+  <header>
+    <div id="headerIMG">
+      <img class="navbar-brand" src="image/header.png" alt="万葉仮名変換機" >
+    </div>
+  </header>
+  <div class="textbox">
+    <p class="setumei_text">変換したい文字をひらがなで入力してください</p>
+    <div id="KanaConvert">
+      <input type="text" id="KanaInput" maxlength="1000" placeholder="ここに入力">
+      <button  id="ConvertButton">変換</button>
+    </div>
+    <p></p>
+    <div id="result-area">
+      <textarea name="あいうえお" id="Result"></textarea>
+    </div>
+  </div>
+  <link rel="stylesheet" href="style.css" type="text/css" />
+  <script src="manyougana.js"></script>
+</body>
+</html>

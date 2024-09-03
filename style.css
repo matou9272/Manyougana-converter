@@ -4,6 +4,9 @@
 
 .navbar-brand {
   text-align: center;
+  width: 450px;
+  height: 200px;
+  object-fit: contain;
 }
 
 .textbox {

@@ -126,6 +126,7 @@ ConvertButton.addEventListener(
   () => {
     const kana = KanaInput.value;
     if (kana.length === 0) {
+      result_area.value = manyou_convert('ここにしゅつりょく')
       alert('入力しろよks');
       //かなの入力欄が空ならアラート
       return;

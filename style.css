@@ -40,9 +40,18 @@
   border: 2px solid #A69A97;
   margin-top:auto;
 }
+#ConvertButton:active {
+  border: 2px solid #605a59;
+}
+
+#result-area {
+  font-weight: arial;
+  font-size: 130%;
+  color: #272625;
+}
 
 #Result {
-  color: #0D0D0D;
+  color: #272625;
   font-size: 130%;
   width: 450px;
   height: 50px;

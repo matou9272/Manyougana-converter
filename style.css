@@ -59,3 +59,56 @@
   border-radius: 5px;
   border: 2px solid #D9B596;
 }
+
+
+
+
+
+
+.tab {
+  width: 500px;
+  margin: auto;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.tab_class {
+  width: calc(100%/5);
+  height: 50px;
+  background-color: #fd0000;
+  background-blend-mode: 5px;
+  /*border-radius: 5px;*/
+  line-height: 50px;
+  font-size: 15px;
+  text-align: center;
+  display: block;
+  float: left;
+  order: -1;
+}
+ 
+input[name="tab_name"] {
+  display: none;
+}
+ 
+input:checked + .tab_class {
+  background-color: cadetblue;
+  color: aliceblue;
+  
+  border-radius: 5px;
+}
+ 
+.content_class {
+  display: none;
+  width: 100%;
+  border-radius: 5px;
+  border-bottom: 3px solid #eee;
+  border-right: 3px solid #eee;
+  border-left: 3px solid #eee;
+  border-top: 3px solid #eee;
+  
+  padding: 30px 10px;
+}
+ 
+input:checked + .tab_class + .content_class {
+  display: block;
+}

@@ -13,9 +13,10 @@ const settei_valve = {
   "katakana": true,
   "romaji": true
 }
-
 let counter = 0;
 let rireki = {};
+let rireki_keys = {};
+let rireki_a_id = {};
 //
 let hiragana_ManyouganaData = new Map([
   ["あ", "安"], ["い", "以"], ["う", "宇"], ["え", "衣"], ["お", "於"],
@@ -171,27 +172,11 @@ function settei_check(key) {
   });
 }
 
-
-settei_check("hiragana");
-settei_check("katakana");
-settei_check("romaji");
-
-ConvertButton.addEventListener(
-  'click',
-  () => {
-    const kana = KanaInput.value;
-    if (kana.length === 0) {
-      result_area.value = manyou_convert_hira('ここにしゅつりょく');
-      console.log('入力してください');
-      alert('入力してください');
-      //かなの入力欄が空ならアラート
-      return;
-    }
-    
+function Convert(kana) {
     const result = manyou_convert_hira(kana);
     
     //履歴を参照
-    let rireki_keys = Object.keys(rireki).sort();
+    rireki_keys = Object.keys(rireki).sort();
     let new_rireki_key = 0;
     if (rireki_keys[rireki_keys.length-1] !== undefined) {
       new_rireki_key = +rireki_keys[rireki_keys.length-1]+1;
@@ -207,16 +192,10 @@ ConvertButton.addEventListener(
       encode_rireki_result += `\n${encodeURIComponent(rireki[rireki_keys[i]]['result'])}`;
       encode_rireki_input += `\n${encodeURIComponent(rireki[rireki_keys[i]]['input'])}`;
     }
-    
     document.cookie = 'rireki_result='+encode_rireki_result+'; max-age=518000; path=/';
     document.cookie = 'rireki_input='+encode_rireki_input+'; max-age=518000; path=/';
     
-    
-    
     //変換したものの表示エリア
-    
-    
-    
     result_area.value = result;
     
     const rireki_div_row = document.createElement('div');
@@ -237,10 +216,45 @@ ConvertButton.addEventListener(
     rireki_p.className = '';
 
     rireki_a.innerText = result;
-    rireki_a.href = '';
-    rireki_a.className = '';
+    rireki_a.href = 'javascript:void(0);';
+    //rireki_a.onclick = Convert(rireki[new_rireki_key]['input']);
     rireki_a.id = `rireki_No-${new_rireki_key}`;
-    
     rireki_div_col_result.appendChild(rireki_a);
     rireki_div_col_input.appendChild(rireki_p);
-});
+
+    rireki_a_id[new_rireki_key] = 
+    console.log(rireki_a_id)
+}
+
+settei_check("hiragana");
+settei_check("katakana");
+settei_check("romaji");
+
+
+ConvertButton.addEventListener(
+  'click',
+  () => {
+    const kana = KanaInput.value;
+    if (kana.length === 0) {
+      result_area.value = manyou_convert_hira('ここにしゅつりょく');
+      console.log('入力してください');
+      alert('入力してください');
+      //かなの入力欄が空ならアラート
+      return;
+    }
+    Convert(kana)
+  }
+);
+
+for (let i=0; i<=rireki_keys.length-1; i++) {
+  document.getElementById(`rireki_No-${String(rireki_keys[i])}`)
+    .addEventListener(
+      'click',
+      () => {
+        console.log('a_click: '+str(rireki_a_id[rireki_keys[i]]));
+        const kana = rireki[rireki_keys[i]]['input'];
+        result_area.value = kana;
+        Convert(kana);
+      }
+    )
+}

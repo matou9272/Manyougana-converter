@@ -198,17 +198,19 @@ function Convert(kana) {
     //変換したものの表示エリア
     result_area.value = result;
     
-    const rireki_div_row = document.createElement('div');
+    //const rireki_div_row = document.createElement('div');
     const rireki_div_col_result = document.createElement('div');
     const rireki_div_col_input = document.createElement('div');
     const rireki_a = document.createElement('a');
     const rireki_p = document.createElement('p');
 
-    rireki_div_row.className = 'row justify-content-md-center';
     rireki_div_col_result.className = 'col-5 ';
     rireki_div_col_input.className = 'col-5 ';
     
-    rireki_area.append(rireki_div_row);
+    counter += 1;
+    rireki_area.insertAdjacentHTML("afterbegin", `<div id="row_${String(counter)}" class="row justify-content-md-center"></div>`);
+    const rireki_div_row = document.getElementById(`row_${String(counter)}`);
+
     rireki_div_row.append(rireki_div_col_result);
     rireki_div_row.append(rireki_div_col_input);
     
@@ -222,7 +224,7 @@ function Convert(kana) {
     rireki_div_col_result.appendChild(rireki_a);
     rireki_div_col_input.appendChild(rireki_p);
 
-    rireki_a_id[new_rireki_key] = 
+    rireki_a_id[new_rireki_key] = rireki_a;
     console.log(rireki_a_id)
 }
 

@@ -174,7 +174,7 @@ function settei_check(key) {
 
 function rireki_click(key) {
   const click = rireki[key]['input'];
-  result_area.value = click;
+  KanaInput.value = click;
   Convert(click);
 }
 

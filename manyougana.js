@@ -172,6 +172,12 @@ function settei_check(key) {
   });
 }
 
+function rireki_click(key) {
+  const click = rireki[key]['input'];
+  result_area.value = click;
+  Convert(click);
+}
+
 function Convert(kana) {
     const result = manyou_convert_hira(kana);
     
@@ -218,7 +224,7 @@ function Convert(kana) {
     rireki_p.className = '';
 
     rireki_a.innerText = result;
-    rireki_a.href = 'javascript:void(0);';
+    rireki_a.href = `javascript:rireki_click(${new_rireki_key});`;
     //rireki_a.onclick = Convert(rireki[new_rireki_key]['input']);
     rireki_a.id = `rireki_No-${new_rireki_key}`;
     rireki_div_col_result.appendChild(rireki_a);
@@ -253,7 +259,7 @@ for (let i=0; i<=rireki_keys.length-1; i++) {
     .addEventListener(
       'click',
       () => {
-        console.log('a_click: '+str(rireki_a_id[rireki_keys[i]]));
+        console.log('a_click: '+str(rireki_a_id[rireki_keys[i]])+"\nrirekikeys: "+rireki_keys[i]);
         const kana = rireki[rireki_keys[i]]['input'];
         result_area.value = kana;
         Convert(kana);
